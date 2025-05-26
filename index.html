@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>区域儿童健康监测系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">区域儿童健康监测系统</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">概览</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="population.html">人口与背景</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="growth.html">生长发育</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nutrition.html">营养状况</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="immunity.html">免疫与疾病</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="development.html">发展与心理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">服务可及</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <!-- 筛选器 -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title mb-0">数据筛选</h5>
+                            <button class="btn btn-success btn-export" id="exportData">
+                                <i class="bi bi-download"></i> 导出数据
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-2">
+                                <label for="ageGroup" class="form-label">年龄段</label>
+                                <select class="form-select" id="ageGroup">
+                                    <option value="all" selected>全部</option>
+                                    <option value="0-1">0-1岁</option>
+                                    <option value="1-3">1-3岁</option>
+                                    <option value="3-6">3-6岁</option>
+                                    <option value="6-12">6-12岁</option>
+                                    <option value="12-18">12-18岁</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <label for="healthStatus" class="form-label">健康状况</label>
+                                <select class="form-select" id="healthStatus">
+                                    <option value="all" selected>全部</option>
+                                    <option value="healthy">健康</option>
+                                    <option value="risk">健康风险</option>
+                                    <option value="chronic">慢性疾病</option>
+                                    <option value="disability">残障</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <label for="region" class="form-label">地区</label>
+                                <select class="form-select" id="region">
+                                    <option value="all" selected>全部</option>
+                                    <option value="urban">城市</option>
+                                    <option value="rural">农村</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <label for="timeRange" class="form-label">时间范围</label>
+                                <select class="form-select" id="timeRange">
+                                    <option value="latest" selected>最新数据</option>
+                                    <option value="year">过去一年</option>
+                                    <option value="3years">过去三年</option>
+                                    <option value="5years">过去五年</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-end mt-2">
+                            <button class="btn btn-primary" id="applyFilter">应用筛选</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 概览仪表板 -->
+        <section id="dashboard" class="mb-5">
+            <h2 class="mb-4">健康状况概览</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">监测总人数</h5>
+                            <h2 class="display-4 text-primary">24,538</h2>
+                            <p class="card-text text-muted">0-18岁儿童总样本</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">健康状况良好比例</h5>
+                            <h2 class="display-4 text-success">78.5%</h2>
+                            <p class="card-text text-muted">处于健康范围内的儿童</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">需关注人群</h5>
+                            <h2 class="display-4 text-warning">5,274</h2>
+                            <p class="card-text text-muted">需要特别关注的儿童</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">健康状况分布</h5>
+                            <canvas id="healthStatusChart" height="220"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">年龄段分布</h5>
+                            <canvas id="ageDistributionChart" height="220"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 人口与背景 -->
+        <!-- 已移动到专门的页面 population.html -->
+
+        <!-- 生长发育 -->
+        <!-- 已移动到专门的页面 growth.html -->
+
+        <!-- 营养状况 -->
+        <!-- 已移动到专门的页面 nutrition.html -->
+
+        <!-- 免疫与疾病 -->
+        <!-- 已移动到专门的页面 immunity.html -->
+
+        <!-- 发展与心理 -->
+        <!-- 已移动到专门的页面 development.html -->
+
+        <!-- 服务可及 -->
+        <!-- 已移动到专门的页面 services.html -->
+    </div>
+
+    <!-- AI建议部分 -->
+    <section class="container-fluid mt-4 mb-5">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
+                <i class="bi bi-robot me-2"></i>
+                <h5 class="mb-0">AI健康助手建议</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="fw-bold mb-3">基于当前数据的分析建议</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex">
+                                <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                                <div>
+                                    <strong>关注城乡儿童健康差距：</strong>数据显示城乡儿童健康状况存在明显差异，建议加强农村地区的健康服务可及性，针对性开展健康教育活动。
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <i class="bi bi-exclamation-triangle-fill text-warning me-2 mt-1"></i>
+                                <div>
+                                    <strong>需要关注特定风险人群：</strong>5,274名儿童需要特别关注，建议建立重点关注人群跟踪干预机制，提供针对性的健康指导。
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <i class="bi bi-lightbulb-fill text-primary me-2 mt-1"></i>
+                                <div>
+                                    <strong>加强跨部门合作：</strong>建议卫生、教育、民政等部门协同合作，形成儿童健康综合支持网络，促进多维度儿童健康管理。
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-light text-center text-muted py-4 mt-5">
+        <div class="container">
+            <p>© 2023 区域儿童健康监测系统 | 更新时间: 2023-11-15</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html> 
